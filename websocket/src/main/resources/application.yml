@@ -1,0 +1,8 @@
+fei:
+  wx:
+    app-id: w1
+    app-secret: 1
+    url: 1
+    codeUrl: 1
+server:
+  port: 80
