@@ -1,5 +1,6 @@
 package com.fei.common.util.redis;
 
+import com.fei.common.util.SpringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -12,19 +13,18 @@ import org.springframework.stereotype.Component;
  * @Time: 2023/7/15
  * @Email: 2825097536@qq.com
  */
-@Component
-public class RedisUtil implements ApplicationRunner {
+
+public class RedisUtil {
     private static StringRedisTemplate redisTemplate;
 
-    @Autowired
-    public RedisUtil(StringRedisTemplate redisTemplate) {
-        RedisUtil.redisTemplate = redisTemplate;
+    static {
+        StringRedisTemplate bean = SpringUtil.getBean(StringRedisTemplate.class);
+        redisTemplate = bean;
+        System.out.println(bean);
+        System.out.println("22142345467");
+
     }
 
-    @Override
-    public void run(ApplicationArguments args) throws Exception {
-        System.out.println();
-    }
 
     public static boolean isMember(String key, Object obj) {
         Boolean member = redisTemplate.opsForSet().isMember(key, obj);
@@ -35,9 +35,7 @@ public class RedisUtil implements ApplicationRunner {
         return member;
     }
 
-    public static void setMember(String key, String obj) {
-        //redisTemplate.opsForSet().add(key, obj);
-
-
+    public static Long setMember(String key, String obj) {
+        return redisTemplate.opsForSet().add(key, obj);
     }
 }

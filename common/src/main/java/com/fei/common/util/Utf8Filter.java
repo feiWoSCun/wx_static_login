@@ -11,7 +11,7 @@ import java.io.IOException;
  * @Time: 2023/7/14
  * @Email: 2825097536@qq.com
  */
-@Component
+@Component("filter")
 public class Utf8Filter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {

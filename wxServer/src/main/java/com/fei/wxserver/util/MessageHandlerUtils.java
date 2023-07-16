@@ -76,8 +76,11 @@ public class MessageHandlerUtils {
         String result;
         String msgType = map.get("MsgType").toString();
         logger.info("消息类型：" + map.get("MsgType").toString());
+        result = buildTextMessage(map, "来了老弟?");
         if (WxMessageType.TYRE.getType().equals(msgType)) {
-            result = buildTextMessage(map, "来了老弟?");
+            //todo: 判断是不是登录id
+
+            //todo: 为用户进行登录
         } else {
             String fromUserName = map.get("FromUserName");
             // 开发者微信号

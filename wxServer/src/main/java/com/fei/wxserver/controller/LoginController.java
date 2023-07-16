@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.fei.common.domain.WxCode;
 import com.fei.common.util.FileUtil;
 import com.fei.wxserver.domain.WxProperties;
+import com.fei.wxserver.servive.GetToken;
 import com.fei.wxserver.util.NetWorkUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Random;
+import java.util.UUID;
 
 /**
  * @description: 登陆相关
@@ -24,6 +27,7 @@ import java.io.UnsupportedEncodingException;
 public class LoginController {
     @Autowired
     WxProperties properties;
+
 
     /**
      * 利用api生成带固定参数的二维码
@@ -49,10 +53,18 @@ public class LoginController {
         }
     }
 
-    public String validationId() {
-
+    public String getValidationId() {
 
         return null;
+
+    }
+
+    public static void main(String[] args) {
+        for (int i = 0; i < 10; i++) {
+
+
+        }
+
 
     }
 }

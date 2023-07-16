@@ -15,9 +15,18 @@ import org.springframework.stereotype.Component;
 public class WxProperties {
     private String appId;
     private String appSecret;
-    private   String token;
+    private String token;
     private String url;
-    private String codeUrl ;
+    private String codeUrl;
+    private String identifyToken;
+
+    public String getIdentifyToken() {
+        return identifyToken;
+    }
+
+    public void setIdentifyToken(String identifyToken) {
+        this.identifyToken = identifyToken;
+    }
 
     public String getToken() {
         return token;
