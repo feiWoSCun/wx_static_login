@@ -3,6 +3,7 @@ package com.fei.wxserver.controller;
 import com.fei.common.util.ServletUtil;
 import com.fei.wxserver.domain.WxProperties;
 import com.fei.wxserver.servive.GetToken;
+import com.fei.wxserver.servive.LoginService;
 import com.fei.wxserver.util.MessageHandlerUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +29,14 @@ import java.util.Map;
 @Slf4j
 public class WxIdentifyAndResponseController {
 
- @Autowired
+    @Autowired
     WxProperties wxProperties;
 
     @Autowired
     private GetToken getToken;
+
+    @Autowired
+    LoginService loginService;
 
     @RequestMapping("testToken")
     public void checkSignature(@RequestParam(value = "signature", required = false) String signature,
@@ -56,12 +60,13 @@ public class WxIdentifyAndResponseController {
                     break;
                 default:
                     //post请求，说明是微信公众号里来的请求
-                    Map<String, String> map = MessageHandlerUtils.getMsgFromClient();
-                    log.info("开始构造消息");
-                    result = MessageHandlerUtils.buildXml(map);
-                    ServletUtil.getResponse().getWriter().write(result.replace(" ", ""));
+                    log.info("开始登录");
+                    String res = loginService.login();
+                    ServletUtil.getResponse().getWriter().write(res);
             }
         } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

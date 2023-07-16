@@ -81,23 +81,7 @@ public class MessageHandlerUtils {
             //todo: 判断是不是登录id
 
             //todo: 为用户进行登录
-        } else {
-            String fromUserName = map.get("FromUserName");
-            // 开发者微信号
-            String toUserName = map.get("ToUserName");
-            result = String
-                    .format(
-                            "<xml>" +
-                                    "<ToUserName><![CDATA[%s]]></ToUserName>" +
-                                    "<FromUserName><![CDATA[%s]]></FromUserName>" +
-                                    "<CreateTime>%s</CreateTime>" +
-                                    "<MsgType><![CDATA[text]]></MsgType>" +
-                                    "<Content><![CDATA[%s]]></Content>" +
-                                    "</xml>",
-                            fromUserName, toUserName, getUtcTime(),
-                            "请输入数字用于验证登录");
         }
-
         return result;
     }
 
@@ -108,7 +92,7 @@ public class MessageHandlerUtils {
      * @param content
      * @return
      */
-    private static String buildTextMessage(Map<String, String> map, String content) {
+    public static String buildTextMessage(Map<String, String> map, String content) {
         //发送方帐号
         String fromUserName = map.get("FromUserName");
         // 开发者微信号

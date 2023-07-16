@@ -61,7 +61,9 @@ public class GetToken implements ApplicationRunner {
 
     }
 
-
+    /**
+     * 100分钟获取一次ToKen
+     */
     @Scheduled(fixedDelay = 1000 * 60 * 100)
     public void getToken() {
         //不会有线程问题的，获取accessToken
